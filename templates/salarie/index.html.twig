@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+    <div class="table-responsive">
+        <table class="table table-striped" >
+            <thead>
+                <tr>
+                    <th>SALARIE</th>
+                    <th>ADRESSE</th>
+                    <th>CP</th>
+                    <th>VILLE</th>
+                    <th>DATE EMBAUCHE</th>
+                    <th>ENTREPRISE</th>
+                    <th>MODIFIER</th>
+                    <th>SUPPRIMER</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for salarie in salaries %}
+                    <tr>
+                        <td><a href="{{ path('salarie_show', {'id':salarie.id}) }}">{{ salarie.nom ~ ' ' ~ salarie.prenom }}</a></td>
+                        <td>{{ salarie.adresse }}</td>
+                        <td>{{ salarie.cp }}</td>
+                        <td>{{ salarie.ville }}</td>
+                        <td>{{ salarie.dateEmbauche | date('d/m/Y') }}</td>
+                        <td>{{ salarie.entreprise.raisonSociale }}</td>
+                        <td><a href="{{ path('salarie_edit', {'id': salarie.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-orange"><span class="btn-outline-text">Modifier</span></button></a></td>
+                        <td><a href="{{ path('salarie_del', {'id': salarie.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-red"><span class="btn-outline-text">Supprimer</span></button></a></td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ path('salarie_add') }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-blue"><span class="btn-outline-text">Ajouter un salarié</span></button></a>
+    
+{% endblock %}

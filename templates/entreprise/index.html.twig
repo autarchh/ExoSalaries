@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+    <table>
+        <thead>
+            <tr>
+                <th>RAISON SOCIALE</th>
+                <th>NUMERO DE SIRET</th>
+                <th>ADRESSE</th>
+                <th>CP</th>
+                <th>VILLE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entreprise in entreprises %}
+                <tr>
+                    <td><a href="{{ path('entreprise_show', {'id':entreprise.id}) }}">{{ entreprise.raisonSociale }}</a></td>
+                    <td>{{ entreprise.siret }}</td>
+                    <td>{{ entreprise.adresse }}</td>
+                    <td>{{ entreprise.cp }}</td>
+                    <td>{{ entreprise.ville }}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}
+
