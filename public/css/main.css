@@ -1,0 +1,8 @@
+body {
+    background: url("../img/backGround.jpg");
+    background-size: cover;
+}
+
+#mapid { 
+    height: 180px; 
+}

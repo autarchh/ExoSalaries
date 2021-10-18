@@ -33,17 +33,13 @@ class SalarieController extends AbstractController
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('datenaissance', DateType::class, [
-                'years' => range(date('Y'), date('Y')-70),
-                'label' => 'Date de naissance',
-                'format' => 'ddMMMMyyyy'
+                'widget' => 'single_text'
             ])
             ->add('adresse', TextType::class)
             ->add('cp', TextType::class)
             ->add('ville', TextType::class)
             ->add('dateEmbauche', DateType::class, [
-                'years' => range(date('Y'), date('Y')-70),
-                'label' => 'Date d\'embauche',
-                'format' => 'ddMMMMyyyy'
+                'widget' => 'single_text'
             ])
             ->add('Entreprise', EntityType::class, [
                 'class' => Entreprise::class,
@@ -79,8 +75,6 @@ class SalarieController extends AbstractController
             $em->flush();
         }
         return $this->redirectToRoute("salaries_index");
-      
-    
     }
 
     /**
@@ -101,4 +95,6 @@ class SalarieController extends AbstractController
     public function show(Salarie $salarie): Response {
         return $this->render('salarie/show.html.twig', ['salarie' => $salarie]);
     }
+
+
 }

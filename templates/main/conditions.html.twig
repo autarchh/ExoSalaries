@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href={{ asset('css/salarie.css')}}>
+{% endblock %}
+
+
+{% block contenu %}
+<h1>Conditions Générales</h1>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laudantium fuga quisquam in aliquam sed est. Vitae omnis quam dolore exercitationem quos enim, maiores deleniti, iusto, veniam beatae ea laboriosam?
+Error, eaque. Expedita libero officia earum! Aspernatur veniam quibusdam recusandae delectus reprehenderit atque dolorem accusamus voluptatibus? Voluptates quam incidunt saepe consequatur eaque vel est beatae cumque sit! Neque, magnam perferendis.
+Eaque, tempore adipisci magni iste autem voluptatibus nulla error fugiat molestiae dolorum officiis commodi recusandae assumenda suscipit blanditiis eligendi debitis, placeat cumque et voluptatum eos? Modi temporibus mollitia numquam pariatur!
+Saepe sed sunt non doloribus soluta. Eius tenetur recusandae autem aliquid perferendis enim nemo quasi nulla ab facere odit, quisquam, atque repellat tempora, molestias eveniet. Numquam eos expedita cupiditate consectetur!
+Et ipsam obcaecati ex enim, animi non officiis fuga at? Omnis distinctio animi beatae provident harum libero enim dignissimos dicta voluptas accusamus. Rerum quam, explicabo reprehenderit deserunt exercitationem iusto iste?
+Fugiat harum nisi asperiores corrupti ducimus, sit quod recusandae officia quo, sint blanditiis vitae suscipit consectetur eum reprehenderit accusantium ut numquam exercitationem voluptate eligendi? Placeat nobis vero amet explicabo quasi?</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae aliquid numquam ratione in illo, magnam nam velit ad deserunt veniam rerum impedit tempore iste deleniti iure blanditiis facilis consequatur aperiam.
+A quos velit impedit soluta excepturi fugiat doloribus enim dolorem pariatur rerum! Provident ullam quia, dolorem dolor facere voluptates reiciendis quaerat unde laboriosam ab officia natus! Dolorum libero sit quod!
+Repudiandae ad molestiae recusandae illo accusantium? Officiis vero natus delectus consectetur. Dignissimos modi sed quam debitis nihil, voluptates in officiis ut velit. Maiores consectetur distinctio ducimus, deleniti nisi praesentium aliquid.</p>
+
+<button id="closeConditions">Fermer la fenêtre</button>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    let close = document.querySelector("#closeConditions")
+    close.addEventListener('click', () => {
+    window.close()
+    }) 
+</script>
+{% endblock %}    
+           

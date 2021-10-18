@@ -17,4 +17,14 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
+
+    /**
+     * @Route("/conditions", name="conditions")
+     */
+    public function conditions()
+    {
+        return $this->render('main/conditions.html.twig', [
+            'controller_name' => 'MainController'
+        ]);
+    }
 }

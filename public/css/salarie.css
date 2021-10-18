@@ -1,0 +1,8 @@
+body {
+    background: rgb(255, 255, 255);
+}
+
+#mapid { 
+    height: 360px; 
+    width:360px;
+}

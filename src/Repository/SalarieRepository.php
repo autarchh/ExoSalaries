@@ -29,22 +29,20 @@ class SalarieRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    // /**
-    //  * @return Salarie[] Returns an array of Salarie objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Salarie[] Un tableau des salariés travaillant dans une entreprise.
+    */
+    public function getSalarieByEntreprise($id)
     {
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('s.entreprise = :val')
+            ->setParameter('val', $id)
+            ->orderBy('s.dateEmbauche', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Salarie

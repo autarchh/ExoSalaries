@@ -1,28 +1,37 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href={{ asset('css/salarie.css')}}>
+{% endblock %}
 {% block contenu %}
-    <table>
-        <thead>
-            <tr>
-                <th>RAISON SOCIALE</th>
-                <th>NUMERO DE SIRET</th>
-                <th>ADRESSE</th>
-                <th>CP</th>
-                <th>VILLE</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entreprise in entreprises %}
+    <div class="table-responsive">
+        <table class="table table-striped" >
+            <thead>
                 <tr>
-                    <td><a href="{{ path('entreprise_show', {'id':entreprise.id}) }}">{{ entreprise.raisonSociale }}</a></td>
-                    <td>{{ entreprise.siret }}</td>
-                    <td>{{ entreprise.adresse }}</td>
-                    <td>{{ entreprise.cp }}</td>
-                    <td>{{ entreprise.ville }}</td>
+                    <th>RAISON SOCIALE</th>
+                    <th>NUMERO DE SIRET</th>
+                    <th>ADRESSE</th>
+                    <th>CP</th>
+                    <th>VILLE</th>
+                    <th>MODIFIER</th>
+                    <th>SUPPRIMER</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% for entreprise in entreprises %}
+                    <tr>
+                        <td><a href="{{ path('entreprise_show', {'id':entreprise.id}) }}">{{ entreprise.raisonSociale }}</a></td>
+                        <td>{{ entreprise.siret }}</td>
+                        <td>{{ entreprise.adresse }}</td>
+                        <td>{{ entreprise.cp }}</td>
+                        <td>{{ entreprise.ville }}</td>
+                        <td><a href="{{ path('entreprise_edit', {'id': entreprise.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-orange"><span class="btn-outline-text">Modifier</span></button></a></td>
+                        <td><a href="{{ path('entreprise_del', {'id': entreprise.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-red"><span class="btn-outline-text">Supprimer</span></button></a></td>
+                    </tr>
                 {% endfor %}
-        </tbody>
-    </table>
-    
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <a href="{{ path('entreprise_add') }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-green"><span class="btn-outline-text">Ajouter une entreprise</span></button></a>
 {% endblock %}
 

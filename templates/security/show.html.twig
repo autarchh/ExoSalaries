@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href={{ asset('css/salarie.css')}}>
+{% endblock %}
+
+{% block contenu %}
+
+	<h1>{{ user.email }}</h1>
+	<h4>
+	{% for role in user.roles %}
+		{{ role}} 
+	{% endfor %}
+	</h4>			
+	<h5>Email vérifié ? 
+		{% if user.isVerified == "1" %}
+			Oui
+		{% else %}
+			Non	
+		{% endif %}
+	</h5>
+	
+	<a href="{{ path('salarie_edit', {'id': user.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-orange"><span class="btn-outline-text">Modifier</span></button></a>
+	<a href="{{ path('salarie_del', {'id': user.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-red"><span class="btn-outline-text">Supprimer</span></button></a>
+
+{% endblock %}

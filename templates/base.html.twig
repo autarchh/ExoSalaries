@@ -5,33 +5,50 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-           <!-- Axentix CSS minified version -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.0.0-beta.1/dist/axentix.min.css">
-            <link rel="stylesheet" href={{ asset('css/style.css')}}>
+             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/main.css')}}">
         {% endblock %}
 
-        {% block javascripts %}
-           <!-- Axentix JS minified version -->
-            <script src="https://cdn.jsdelivr.net/npm/axentix@2.0.0-beta.1/dist/axentix.min.js"></script>
-        {% endblock %}
     </head>
     <body class="layout">
         <header>
-        <nav class="navbar shadow-1 primary">
-            <button class="btn rounded-1 white hide-md-up sidenav-trigger btn-small mr-2" data-target="main-sidenav">
-            Menu
-            </button>
-            <a href="/" target="" class="navbar-brand">Gestion Entreprise</a>
-            <div class="navbar-menu ml-auto">
-                <a class="navbar-link active hide-sm-down" href="salaries">Salariés</a>
-                <a class="navbar-link hide-sm-down" href="entreprises">Entreprises</a>
-            </div>
-        </nav>
+            <nav class="navbar shadow-1 primary">
+                <a href="/" class="navbar-brand">>Gestion Entreprise</a>
+                <div class="navbar-menu ml-auto">
+                    {% if is_granted('ROLE_ADMIN') %} 
+                            <a class="navbar-link hide-sm-down" href="/users">Liste des utilisateurs</a>
+                    {% endif %}
+                        <a class="navbar-link hide-sm-down" href="/salaries">Salariés</a>
+                        <a class="navbar-link hide-sm-down" href="/entreprises">Entreprises</a>
+                    <div class="dropdown" id="example-dropdown" data-ax="dropdown">
+                        <div class="navbar-link secondary dropdown-trigger">
+                            Utilisateurs
+                        </div>
+                        <div class="dropdown-content dropdown-right white shadow-1">
+                            <a class="dropdown-item" href="/register">S'enregistrer</a>
+                            <a class="dropdown-item" href="/login">Se connecter</a>
+                        {% if app.user  %}
+                            <hr>
+                            <a class="dropdown-item" href="/logout">Deconnexion</a>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
 
         <main>
-         {% block body %}
+        {% for message in app.flashes('error') %}
+            <div class="p-3 my-2 rounded-2 error" role="alert">{{ message }}</div>
+        {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="p-3 my-2 rounded-2 succes" role="alert">{{ message }}</div>
+        {% endfor %}
+        {% block body %}
             {% block contenu %}{% endblock %}
         {% endblock %}
         </main>
@@ -40,6 +57,14 @@
         Copyright © 2021 - JMV
         </footer>
   
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+        {% block javascripts %}
+            <script src="https://cdn.jsdelivr.net/npm/axentix@2.0.0-beta.1/dist/axentix.min.js"></script>
+            <script src="{{ asset('js/script.js')}}"></script>
+           
+        {% endblock %}
        
     </body>
 </html>

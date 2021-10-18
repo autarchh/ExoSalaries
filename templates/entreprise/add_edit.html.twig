@@ -4,7 +4,6 @@
     <link rel="stylesheet" href={{ asset('css/salarie.css')}}>
 {% endblock %}
 
-
 {% block contenu %}
 
     {% if editMode %}
@@ -13,21 +12,16 @@
         <h1>Ajout</h1>
     {% endif %}
 
-    {{ form_start(form, {'attr': {'class': 'form-material'}}) }}
+   {{ form_start(form, {'attr': {'class': 'form-material'}}) }}
     <div class="grix xs1 sm2">
         <div class="form-field">
-            {{ form_label(form.nom, "Nom") }}
-            {{ form_widget(form.nom)}}
+            {{ form_label(form.raisonSociale, "Raison Sociale") }}
+            {{ form_widget(form.raisonSociale)}}
         </div>
         <div class="form-field">
-            {{ form_label(form.prenom, "Prénom") }}
-            {{ form_widget(form.prenom) }}
+            {{ form_label(form.siret, "Siret") }}
+            {{ form_widget(form.siret) }}
         </div>
-        <div class="form-field">
-            {{ form_label(form.Entreprise, "Entreprise") }}
-            {{ form_widget(form.Entreprise) }}
-        </div>
-
         <div class="form-field">
             {{ form_label(form.adresse, "Adresse") }}
             {{ form_widget(form.adresse) }}
@@ -41,18 +35,9 @@
             {{ form_widget(form.ville) }}
         </div>
         <div class="form-field">
-            {{ form_label(form.datenaissance, "Date de Naissance") }}
-            {{ form_widget(form.datenaissance) }}
-        </div>
-        <div class="form-field">
-            {{ form_label(form.dateEmbauche, "Date d'embauche") }}
-            {{ form_widget(form.dateEmbauche) }}
-        </div>
-        <div class="form-field">
             {{ form_widget(form.Valider, {'attr': {'class': 'btn rounded-1 green press'}}) }}
         </div>
-        
     </div>
-   {{ form_end(form) }}    
+   {{ form_end(form) }}
 
 {% endblock  %}

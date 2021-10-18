@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SalarieRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -86,17 +87,31 @@ class Salarie
 
         return $this;
     }
-
-    public function getDateNaissance(): ?\DateTimeInterface
-    {
+    
+    public function getDateNaissance()
+    {   
         return $this->dateNaissance;
     }
 
     public function setDateNaissance(\DateTimeInterface $dateNaissance): self
     {
-        $this->dateNaissance = $dateNaissance;
+        $this->dateNaissance = new DateTime($dateNaissance);
 
         return $this;
+    }
+
+    public function getAnciennete()
+    {
+        $now = new DateTime();
+        $date = date_diff($this->dateEmbauche, $now);
+        return $date;
+    }
+
+    public function getAge()
+    {
+        $now = new DateTime();
+        $date = date_diff($this->dateNaissance, $now);
+        return $date;
     }
 
     public function getAdresse(): ?string
@@ -135,18 +150,17 @@ class Salarie
         return $this;
     }
 
-    public function getDateEmbauche(): ?\DateTimeInterface
-    {
+    public function getDateEmbauche()
+    {   
         return $this->dateEmbauche;
     }
 
     public function setDateEmbauche(\DateTimeInterface $dateEmbauche): self
     {
-        $this->dateEmbauche = $dateEmbauche;
+        $this->dateEmbauche = new DateTime($dateEmbauche);
 
         return $this;
     }
-
     public function getEntreprise(): ?Entreprise
     {
         return $this->entreprise;

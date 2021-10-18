@@ -1,5 +1,15 @@
 {% extends "base.html.twig" %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href={{ asset('css/salarie.css')}}>
+{% endblock %}
 {% block contenu %}
-    <h1> {{ salarie.nom ~ ' ' ~ salarie.prenom }}</h1>
+<h1>{{ salarie.nom ~ ' ' ~ salarie.prenom }}</h1>
+<a href="/salaries"><button class="btn shadow-1 rounded-1 btn-outline btn-opening">Retour à la liste</button></a>
+<h4>Date de naissance : {{ salarie.dateNaissance|date('d-m-Y')}} ({{ salarie.age.y }} ans)</h4>
+            <h5><pre>Adresse : {{salarie.adresse}} 
+          {{salarie.cp}}  {{salarie.ville}} </pre></h5>
+<h4>Travail chez : {{ salarie.entreprise.raisonSociale }}</h4>
+<h5>Depuis le : {{ salarie.dateEmbauche|date('d-m-Y') }} ({{ salarie.anciennete.y}} ans) </h5>
+<a href="{{ path('salarie_edit', {'id': salarie.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-orange"><span class="btn-outline-text">Modifier</span></button></a>
+<a href="{{ path('salarie_del', {'id': salarie.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-red"><span class="btn-outline-text">Supprimer</span></button></a>
 {% endblock %}

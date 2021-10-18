@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href={{ asset('css/salarie.css')}}>
+{% endblock %}
+
 {% block contenu %}
     <div class="table-responsive">
         <table class="table table-striped" >
@@ -27,10 +31,11 @@
                         <td><a href="{{ path('salarie_edit', {'id': salarie.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-orange"><span class="btn-outline-text">Modifier</span></button></a></td>
                         <td><a href="{{ path('salarie_del', {'id': salarie.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-red"><span class="btn-outline-text">Supprimer</span></button></a></td>
                     </tr>
-                    {% endfor %}
+                {% endfor %}
             </tbody>
         </table>
     </div>
-    <a href="{{ path('salarie_add') }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-blue"><span class="btn-outline-text">Ajouter un salarié</span></button></a>
+    <br>
+    <a href="{{ path('salarie_add') }}"><button class="btn small  shadow-1 rounded-1 btn-outline btn-opening text-green"><span class="btn-outline-text">Ajouter un salarié</span></button></a>
     
 {% endblock %}

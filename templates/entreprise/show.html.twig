@@ -1,5 +1,32 @@
 {% extends "base.html.twig" %}
-
-{% block contenu %}
-    <h1> {{ entreprise.raisonSociale }}</h1>
+{% block stylesheets %}
+    <link rel="stylesheet" href={{ asset('css/salarie.css')}}>
 {% endblock %}
+{% block contenu %}
+
+
+<h1 id="raisonSociale">{{ entreprise.raisonSociale }}</h1><a href="/entreprises"><button class="btn shadow-1 rounded-1 btn-outline btn-opening">Retour à la liste</button></a>
+<h4>Numéro de SIRET : {{ entreprise.siret }}</h4>
+            <h5><pre>Adresse :<span id="adresse"> {{entreprise.adresse}}</span> 
+          {{entreprise.cp}}  {{entreprise.ville}} </pre></h5>
+<br>
+<div id="mapid"></div>
+
+<div class="table-responsive">
+    <table class="table table-striped" >
+        <thead>
+            <th>Nom</th>
+            <th>Ancienneté</th>
+        </thead>
+        <tbody>
+            {% for salarie in salaries %}
+                <tr>
+                    <td><a href="{{ path('salarie_show', {'id':salarie.id}) }}">{{ salarie.nom ~ ' ' ~ salarie.prenom }} </a></td>
+                    <td>{{salarie.anciennete.y ~ ' ans et ' ~ salarie.anciennete.m}} mois</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

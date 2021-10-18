@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href={{ asset('css/salarie.css')}}>
+{% endblock %}
+
+{% block contenu %}
+    <div class="table-responsive">
+        <table class="table table-striped" >
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Email vérifié ?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td><a href="{{ path('user_show', {'id':user.id}) }}">{{ user.email }}</a></td>
+                        <td>
+                        {% for role in user.roles %}
+                            {% if is_granted("ROLE_ADMIN") %}
+                            <a href="{{ path('user_role', {'id':user.id}) }}">{{ role }}</a>    
+                            {% else %}
+                            {{ role }}
+                            {% endif %}
+                        {% endfor %}
+                        </td>
+                        <td>
+                            {% if user.isVerified == "1" %}
+                                Oui
+                            {% else %}
+                                Non	
+                            {% endif %}
+                        </td>
+                        <td><a href="{{ path('user_del', {'id': user.id}) }}"><button class="btn shadow-1 rounded-1 btn-outline btn-opening text-red"><span class="btn-outline-text">Supprimer</span></button></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    
+{% endblock %}
